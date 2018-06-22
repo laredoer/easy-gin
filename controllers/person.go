@@ -1,25 +1,19 @@
 package controllers
 
 import (
-	"net/http"
-	"log"
-	"fmt"
-	. "easy-gin/models"
 	"github.com/gin-gonic/gin"
+	. "easy-gin/database"
+	"fmt"
 )
 
 func IndexApi(c *gin.Context) {
-	c.String(http.StatusOK, "It works")
+	res,err := DB.Table("person").First()
+	if err!=nil{
+		fmt.Println(err)
+		return
+	}
+	c.JSON(200, gin.H{
+		"data":res,
+	})
 }
 
-func AddPersonApi(c *gin.Context) {
-	firstName := c.Request.FormValue("first_name")
-	lastName := c.Request.FormValue("last_name")
-	p := Person{FirstName: firstName, LastName: lastName}
-	ra, err := p.AddPerson()
-	if err != nil {
-		log.Fatalln(err)
-	}
-	msg := fmt.Sprintf("insert successful %d", ra)
-	c.JSON(http.StatusOK, gin.H{"msg": msg,})
-}

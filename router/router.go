@@ -10,6 +10,4 @@ var R *gin.Engine
 func init()  {
 	R = gin.Default()
 	R.GET("/", IndexApi)
-	R.POST("/person", AddPersonApi)
-
 }
