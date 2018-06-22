@@ -1,10 +1,10 @@
 package main
 
 import (
-	"easy-gin/router"
+	. "easy-gin/router"
 )
 
 func main() {
 
-	router.R.Run(":8000")
+	R.Run(":8000")
 }
