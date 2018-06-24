@@ -2,13 +2,13 @@ package controllers
 
 import (
 	"github.com/gin-gonic/gin"
-	. "easy-gin/database"
 	"fmt"
+	. "easy-gin/database"
 )
 
 func IndexApi(c *gin.Context) {
-	res,err := DB.Table("person").First()
-	if err!=nil{
+	res,err := DB.Table("person").Get()
+	if err != nil {
 		fmt.Println(err)
 		return
 	}
